@@ -1,0 +1,4 @@
+.popup_view-image.popup{
+  background: rgba(0, 0, 0, .9);
+  transition: visibility 0.8s, opacity 0.5s linear;
+}

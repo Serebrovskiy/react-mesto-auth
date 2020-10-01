@@ -1,0 +1,29 @@
+.profile__avatar-container {
+  width: 120px;
+  height: 120px;
+  margin-right: 30px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.profile__avatar-container:hover {
+  cursor: pointer;
+}
+
+.profile__avatar-container:after {
+  content: url(../../../images/pen.svg);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: scale(3) translate(-25%,-15%);
+  opacity: 0;
+}
+
+.profile__avatar-container:hover:after {
+  opacity: 1;
+}
+
+.profile__avatar-container:hover .profile__avatar{
+  opacity: 0.3;
+  transition: 0.3s;
+}

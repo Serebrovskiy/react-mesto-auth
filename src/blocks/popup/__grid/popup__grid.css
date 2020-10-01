@@ -1,0 +1,16 @@
+.popup__grid {
+  max-width: 470px;
+  margin-left: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+@media screen and (max-width: 400px) {
+  .popup__grid {
+    max-width: 300px;
+    max-height: 308px;
+    margin-left: 20px;
+  }
+}

@@ -1,0 +1,8 @@
+.popup__button_add_card {
+}
+
+@media screen and (max-width: 400px) {
+  .popup__button_add_card {
+    margin-top: 15px;
+  }
+}

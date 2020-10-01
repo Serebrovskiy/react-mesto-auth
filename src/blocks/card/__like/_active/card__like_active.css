@@ -1,0 +1,9 @@
+.card__like_active {
+  background-image: url(../../../../images/heart_black.svg);
+  transition: .3s;
+}
+
+.card__like_active:hover {
+  opacity: .6;
+
+}

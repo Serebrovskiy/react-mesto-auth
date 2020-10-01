@@ -1,0 +1,11 @@
+.popup__container_avatar {
+  width: 390px;
+  height: 260px;
+}
+
+@media screen and (max-width: 400px) {
+  .popup__container_avatar {
+    width: 230px;
+    height: 210px;
+  }
+}
