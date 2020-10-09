@@ -1,0 +1,16 @@
+.popup__text-sign {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #000;
+  padding-right: 40px;
+  margin-top: 32px;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__text-sign {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}

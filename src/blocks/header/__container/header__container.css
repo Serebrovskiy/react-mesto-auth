@@ -1,0 +1,6 @@
+.header__container {
+  display: flex;
+  padding-top: 8px;
+  height: 22px;
+  /* border: 1px solid gray;  */
+}

@@ -1,0 +1,21 @@
+.header__out {
+  border: none;
+  color: #FFF;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: none;
+  margin: 0;
+}
+
+.header__out:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .header__out {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

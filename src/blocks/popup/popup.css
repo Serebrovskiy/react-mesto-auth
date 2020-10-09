@@ -19,6 +19,8 @@
 @import url(./__container/_avatar/popup__container_avatar.css);
 @import url(./__container/_confirm/popup__container_confirm.css);
 @import url(./__container/_profile/popup__container_profile.css);
+@import url(./__image-sign/popup__image-sign.css);
+@import url(./__text-sign/popup__text-sign.css);
 
 
 
