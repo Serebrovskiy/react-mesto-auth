@@ -1,4 +1,4 @@
-import Api from './api1';
+import Api from './Api';
 
 export const formValidationOptions = {
   formProfileSelector: '.popup__container',
