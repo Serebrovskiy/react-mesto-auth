@@ -48,7 +48,7 @@ function Header() {
       setLoginLink('/sign-in');
     }
 
-    if (location.pathname === '/main') {
+    if (location.pathname === '/') {
       setLogin(true);
       setLoginLink('/sign-in');
     }

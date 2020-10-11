@@ -1,13 +1,10 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import * as auth from '../utils/auth';
 
-const Register = () => {
+const Register = ({ onRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const history = useHistory();
 
     const resetForm = () => {
     setEmail('');
@@ -17,16 +14,8 @@ const Register = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    auth.register(password, email)
-      .then((res) => {
-        if (res.statusCode !== 400) {
-          resetForm();
-          history.push('/sign-in');
-        }
-        else {
-          resetForm();
-        }
-      });
+      onRegister(password, email);
+      resetForm();
   };
 
   return (

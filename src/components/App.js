@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -13,7 +14,7 @@ import ProtectedRoute from './ProtectedRoute';
 import * as auth from '../utils/auth';
 import { api } from '../utils/utils';
 import { CurrentUserContext } from './contexts/CurrentUserContext';
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+
 
 function App() {
   const [isEditAvatarPopupOpen, setIsOpenPopupAvatar] = React.useState(false);
@@ -107,7 +108,19 @@ function App() {
       .catch((err) => console.error(err));
   }
 
-  const onAuth = (password, email) => {
+  const handleRegister = (password, email) => {
+    auth
+      .register(password, email)
+      .then((res) => {
+        if (res.statusCode !== 400) {
+          history.push('/sign-in');
+          handleInfoTooltipClick(true);
+        }
+      })
+      .catch((err) => console.error(err));
+  }
+
+  const handleLogin = (password, email) => {
     return auth
       .authorize(password, email)
       .then((data) => {
@@ -117,7 +130,28 @@ function App() {
         if (data.token) {
           setLoggedIn(true);
         }
+      })
+      .then(() => {
+        history.push('/')
+      })
+      .catch((err) => {
+        handleInfoTooltipClick(false);
+        console.error('Что-то пошло не так')
       });
+  }
+
+  const tokenCheck = () => {
+    const jwt = localStorage.getItem('token');
+    if (jwt) {
+      auth.getContent(jwt)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            history.push('/');
+          }
+        })
+        .catch(err => console.error(err));
+    }
   }
 
   React.useEffect(() => {
@@ -126,7 +160,7 @@ function App() {
     }
     document.addEventListener("keydown", handleEscClose);
     return () => document.removeEventListener("keydown", handleEscClose);
-  });
+  }, []);
 
   React.useEffect(() => {
     const handleMouseClose = (evt) => {
@@ -151,24 +185,9 @@ function App() {
       .catch((err) => console.error(err));
   }, []);
 
-  const tokenCheck = useCallback(() => {
-    let jwt = localStorage.getItem('token');
-
-    if (jwt) {
-      auth.getContent(jwt)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            history.push('/main');
-          }
-          else {
-            setLoggedIn(false);
-          }
-        })
-        .catch(err => console.error(err));
-    }
-  }, [history]);
-
+  React.useEffect(() => {
+    tokenCheck();
+  }, []);
 
   return (
     <div>
@@ -179,7 +198,7 @@ function App() {
 
           <Switch>
             <ProtectedRoute
-              path="/main"
+              exact path="/"
               loggedIn={loggedIn}
               onEditAvatar={handleEditAvatarClick}
               onAddCard={handleEditPlaceClick}
@@ -191,13 +210,13 @@ function App() {
               component={Main}
             />
             <Route path="/sign-up">
-              <Register />
+              <Register onRegister={handleRegister} />
             </Route>
             <Route path="/sign-in">
-              <Login onAuth={onAuth} tokenCheck={tokenCheck} onSubmit={handleInfoTooltipClick} />
+              <Login onLogin={handleLogin} />
             </Route>
             <Route>
-              {loggedIn ? <Redirect to="/main" /> : <Redirect to="/sign-in" />}
+              {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
             </Route>
           </Switch>
 

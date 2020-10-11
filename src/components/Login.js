@@ -1,13 +1,11 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const Login = ({ onAuth, onSubmit }) => {
+const Login = ({ onLogin }) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const history = useHistory();
 
   const resetForm = () => {
     setEmail('');
@@ -21,19 +19,8 @@ const Login = ({ onAuth, onSubmit }) => {
       console.log("какие то данные не заполненны");
       return;
     }
-
-    onAuth(password, email)
-      .then(() => {
-        resetForm();
-      })
-      .then(() => {
-        onSubmit(true);
-        history.push('/main')
-      })
-      .catch((err) => {
-        onSubmit(false);
-        console.error('Что-то пошло не так')
-      });
+    onLogin(password, email);
+    resetForm();
   };
 
   return (

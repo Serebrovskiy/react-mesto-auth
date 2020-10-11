@@ -10,12 +10,14 @@ export const register = (password, email) => {
     body: JSON.stringify({ password, email })
   })
     .then((res) => {
+      if (!res.ok) {
+        throw new Error('Что-то пошло не так');
+      }
       return res.json();
     })
     .then((res) => {
       return res;
     })
-    .catch((err) => console.error(err));  // написать код ошибки
 };
 
 export const authorize = (password, email) => {
@@ -44,7 +46,6 @@ export const authorize = (password, email) => {
         return;
       }
     })
-    .catch(err => console.error(err))
 };
 
 export const getContent = (token) => {
