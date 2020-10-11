@@ -168,7 +168,7 @@ function App() {
     }
     document.addEventListener("click", handleMouseClose);
     return () => document.removeEventListener("click", handleMouseClose);
-  });
+  }, []);
 
   React.useEffect(() => {
     Promise.all([api.getProfile(), api.getInitialCards()])
