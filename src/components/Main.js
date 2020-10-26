@@ -14,9 +14,9 @@ function Main({ onEditAvatar, onEditProfile, onAddCard, onCardClick, onCardLike,
           <img className="profile__avatar" src={currentUser.avatar ? currentUser.avatar : avatarLoad} alt="Аватар" />
         </div>
         <div className="profile__name-block">
-          <h2 className="profile__name">{currentUser.name ? currentUser.name : "Загрузка..."}</h2>
+          <h2 className="profile__name">{currentUser.name ? currentUser.name : "Имя"}</h2>
           <button type="button" className="profile__edit" onClick={onEditProfile} />
-          <p className="profile__profession">{currentUser.about ? currentUser.about : "..."}</p>
+          <p className="profile__profession">{currentUser.about ? currentUser.about : "Профессия"}</p>
         </div>
         <button type="button" className="profile__button" onClick={onAddCard} />
       </section>

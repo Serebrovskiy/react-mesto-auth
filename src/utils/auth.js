@@ -1,4 +1,6 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+//'http://localhost:3001'; 'https://api.aleks.students.nomoreparties.space'; https://auth.nomoreparties.co
+
+export const BASE_URL = 'https://api.aleks.students.nomoreparties.space';
 
 export const register = (password, email) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -7,6 +9,7 @@ export const register = (password, email) => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
+
     body: JSON.stringify({ password, email })
   })
     .then((res) => {
@@ -24,7 +27,9 @@ export const authorize = (password, email) => {
   return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+     // authorization: `Bearer ${localStorage.getItem('token')}`
     },
     body: JSON.stringify({ password, email })
   })
@@ -52,11 +57,11 @@ export const getContent = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
+      Accept: 'application/json',
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
     }
   })
     .then(res => res.json())
-    .then(data => data)
+   // .then(data => data)
 }
-

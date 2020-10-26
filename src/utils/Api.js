@@ -1,86 +1,115 @@
-export default class Api {
-  constructor(options) {
-    this._baseUrl = options.baseUrl;
-    this._headers = options.headers;
-  }
+export const BASE_URL = 'https://api.aleks.students.nomoreparties.space';
 
-  _getResponse(res) {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Ошибка: ${res.status}`);
+export const getInitialCards = (token) => {
+  return fetch(`${BASE_URL}/cards`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
     }
-  }
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res)
+      }
+    })
+}
 
-  getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
-      method: 'GET',
-      headers: this._headers
-    }).then(this._getResponse);
-  }
+export const setProfile = (name, about, token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({ name, about })
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res)
+      }
+    })
+}
 
-  //получаем ответ по нашему профилю
-  getProfile() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: 'GET',
-      headers: this._headers
+export const setAvatar = (avatar, token) => {
+  return fetch(`${BASE_URL}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({ avatar })
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res)
+      }
+    })
+}
 
-    }).then(this._getResponse);
-  }
+export const createCard = (name, link, token) => {
+  return fetch(`${BASE_URL}/cards`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({ name, link, })
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res)
+      }
+    })
+}
 
-  //обновляем данные о профиле
-  setProfile(name, about) {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: 'PATCH',
-      headers: this._headers,
-      body: JSON.stringify({
-        name: name,
-        about: about
-      })
-    }).then(this._getResponse);
-  }
+export const deleteCard = (cardId, token) => {
+  return fetch(`${BASE_URL}/cards/${cardId}`, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res)
+      }
+    })
+}
 
-  //отправляем данные о новой карточке
-  createCard(name, link) {
-    return fetch(`${this._baseUrl}/cards`, {
-      method: 'POST',
-      headers: this._headers,
-      body: JSON.stringify({
-        name: name,
-        link: link
-      })
-    }).then(this._getResponse);
-  }
-
-  //удаляем карточку
-  deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
-      method: 'DELETE',
-      headers: this._headers,
-      body: JSON.stringify({
-      })
-    });
-  }
-
-  //обновляем статус лайка
-  changeLikeCardStatus(cardId, like) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: like ? 'PUT' : 'DELETE',
-      headers: this._headers,
-      body: JSON.stringify({
-        id: cardId
-      })
-    }).then(this._getResponse);
-  }
-
-  //обновляем данные об аватаре
-  setAvatar(avatarLink) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar: avatarLink,
-      })
-    }).then(this._getResponse);
-  }
+export const changeLikeCardStatus = (cardId, like, token) => {
+  return fetch(`${BASE_URL}/cards/likes/${cardId}`, {
+    method: like ? 'PUT' : 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      id: cardId
+    })
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res)
+      }
+    })
 }

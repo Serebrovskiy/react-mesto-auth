@@ -4,8 +4,8 @@ import { CurrentUserContext } from './contexts/CurrentUserContext';
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const currentUser = React.useContext(CurrentUserContext);
-  const [name, setName] = React.useState('');
-  const [description, setDescription] = React.useState('');
+  const [name, setName] = React.useState('Имя');
+  const [description, setDescription] = React.useState('Профессия');
   const [isDisabled, setIsDisabled] = React.useState(false);
   const inputNameRef = React.useRef("");
   const inputAboutRef = React.useRef("");
