@@ -3,6 +3,7 @@
 @import url(./__button/login__button.css);
 @import url(./__text/login__text.css);
 @import url(./__text-link/login__text-link.css);
+@import url(./__button/_disabled/login__button_disabled.css);
 
 .login {
   display: flex;

@@ -94,7 +94,7 @@ export const deleteCard = (cardId, token) => {
 }
 
 export const changeLikeCardStatus = (cardId, like, token) => {
-  return fetch(`${BASE_URL}/cards/likes/${cardId}`, {
+  return fetch(`${BASE_URL}/cards/${cardId}/likes`, {
     method: like ? 'PUT' : 'DELETE',
     headers: {
       'Accept': 'application/json',
