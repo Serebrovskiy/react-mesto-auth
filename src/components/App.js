@@ -140,7 +140,10 @@ function App() {
           handleInfoTooltipClick(true);
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        //console.error(err);
+        handleInfoTooltipClick(false);
+      });
   }
 
   const handleLogin = (password, email) => {
@@ -164,7 +167,7 @@ function App() {
       })
       .catch((err) => {
         handleInfoTooltipClick(false);
-        console.error('Что-то пошло не так')
+        //console.error('Что-то пошло не так')
       });
   }
 

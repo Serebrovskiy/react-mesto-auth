@@ -1,5 +1,4 @@
-//'http://localhost:3001'; 'https://api.aleks.students.nomoreparties.space'; https://auth.nomoreparties.co
-
+//export const BASE_URL = 'http://localhost:3001';
 export const BASE_URL = 'https://api.aleks.students.nomoreparties.space';
 
 export const register = (password, email) => {
