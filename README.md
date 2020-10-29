@@ -4,9 +4,9 @@
 
 # Mesto-React-Auth
 
-#### Домен приложения: https://aleks.students.nomoreparties.space
-#### REST API: https://api.aleks.students.nomoreparties.space
-#### Публичный IP: 130.193.57.239
+#### Домен приложения: https://site.students.nomoreparties.space
+#### REST API: https://api.site.students.nomoreparties.space
+#### Публичный IP: 130.193.56.215
 #### Репозиторий Бэкенда: https://github.com/Serebrovskiy/react-mesto-api-full
 
 ---
