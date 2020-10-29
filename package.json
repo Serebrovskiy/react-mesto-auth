@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./build* serebrovskiy@130.193.57.239:/home/serebrovskiy/news-frontend/build"
+    "deploy": "npm run build && scp -r ./build* serebrovskiy@130.193.56.215:/home/serebrovskiy/news-frontend/build"
 
   },
   "eslintConfig": {

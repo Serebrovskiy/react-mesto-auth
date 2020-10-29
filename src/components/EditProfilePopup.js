@@ -61,7 +61,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         value={name ? name : ""}
         onChange={handleChangeName}
         ref={inputNameRef}
-        pattern="^[a-zA-Zа-яА-Я\s-]+$"
+        pattern="^[a-zA-Z0-9а-яА-Я\s-]+$"
         minLength="2"
         maxLength="40"
         required

@@ -1,5 +1,5 @@
 //export const BASE_URL = 'http://localhost:3001';
-export const BASE_URL = 'https://api.aleks.students.nomoreparties.space';
+export const BASE_URL = 'https://api.site.students.nomoreparties.space';
 
 export const getInitialCards = (token) => {
   return fetch(`${BASE_URL}/cards`, {
