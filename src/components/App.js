@@ -48,11 +48,11 @@ function App() {
         })
         .catch((err) => console.error(err));
     }
-  }, []);
+  }, [history]);
 
   function handleInfoTooltipClick(login) {
     login ? setLoggedIn(true) : setLoggedIn(false);
-    onLogin();
+  //  onLogin();
     setIsOpenPopupInfoTooltip(true);
   }
 
