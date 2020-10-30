@@ -13,7 +13,7 @@ export const register = (password, email) => {
   })
     .then((res) => {
       if (!res.ok) {
-        throw new Error('Что-то пошло не так');
+        throw new Error('Вам отказано в регистрации');
       }
       return res.json();
     })
@@ -34,10 +34,10 @@ export const authorize = (password, email) => {
   })
     .then((res => {
       if (res.status === 400) {
-        throw new Error('400 - не передано одно из полей');
+        throw new Error('Введены некорректные данные');
       }
       if (res.status === 401) {
-        throw new Error('401 - Данные переданы с ошибкой или не полностью');
+        throw new Error('Данные переданы с ошибкой или не полностью');
       }
       return res.json();
     })

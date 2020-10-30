@@ -3,7 +3,7 @@ import { useState } from 'react';
 import signSuccess from '../images/signSuccess.svg';
 import signClosed from '../images/signClosed.svg';
 
-function InfoTooltip({ isOpen, onClose, loggedIn }) {
+function InfoTooltip({ isOpen, onClose, loggedIn, messageError }) {
 
   const [signImage, setSignImage] = useState('');
   const [signText, setSignText] = useState('');
@@ -24,7 +24,7 @@ function InfoTooltip({ isOpen, onClose, loggedIn }) {
         <button type="button" className="popup__close-icon" onClick={onClose} />
         <div className="popup__container">
           <img className="popup__image-sign" src={signImage} alt="знак доступа" />
-  <h3 className="popup__text-sign">{signText}</h3>
+  <h3 className="popup__text-sign">{`${loggedIn ? "Вы успешно зарегистрировались!" : messageError}`}</h3>
         </div>
       </div>
     </div>

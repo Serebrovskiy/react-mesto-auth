@@ -24,6 +24,7 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [currentUser, setCurrentUser] = React.useState({});
   const [isInfoTooltipPopupOpen, setIsOpenPopupInfoTooltip] = React.useState(false);
+  const [messageInfoTooltip, setMessageInfoTooltip] = React.useState('Ой, ошибка');
   const [loggedIn, setLoggedIn] = React.useState(false);
 
   const history = useHistory();
@@ -141,8 +142,9 @@ function App() {
         }
       })
       .catch((err) => {
-        //console.error(err);
+        console.error(err);
         handleInfoTooltipClick(false);
+        setMessageInfoTooltip(err.message);
       });
   }
 
@@ -167,7 +169,7 @@ function App() {
       })
       .catch((err) => {
         handleInfoTooltipClick(false);
-        //console.error('Что-то пошло не так')
+        setMessageInfoTooltip(err.message);
       });
   }
 
@@ -265,6 +267,7 @@ function App() {
             isOpen={isInfoTooltipPopupOpen}
             onClose={closeAllPopups}
             loggedIn={loggedIn}
+            messageError={messageInfoTooltip}
           />
         </CurrentUserContext.Provider>
       </main>
